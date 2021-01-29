@@ -9,10 +9,16 @@ inputs:
 outputs:
   signature: # id of output
     description: 'base64 encoded signature'
+  sha256: # id of output
+    description: 'hex encoded sha256 hash'
+  environment:
+    description: base64 encoded JSON environment
+  environment_signature: # id of output
+    description: 'base64 encoded signature of JSON environment'
   publickey: # id of output
     description: 'publickey'
 runs:
   using: 'docker'
-  image: us-central1-docker.pkg.dev/dlorenc-vmtest2/test/verifyme-985f218cb919c4025174ca30373de02f@sha256:cc786e6c9defaea5308219e388714cb0727c24173133d15b4fba6b831868c8c1
+  image: docker://us-central1-docker.pkg.dev/dlorenc-vmtest2/test/verifyme-985f218cb919c4025174ca30373de02f@sha256:7da5e029954006c3080d3726dcf854f3b6d190d718a3b373a4421a373fa0c5e8
   args:
     - ${{ inputs.filepath }}

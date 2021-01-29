@@ -1,0 +1,18 @@
+name: verified-builder
+on: workflow_dispatch
+jobs:
+  verify-build:
+    name: Generate verification
+    # Set the type of machine to run on
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks out a copy of your repository on the ubuntu-latest machine
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Runs the Super-Linter action
+      - name: Run build verifier
+        uses: dlorenc/verifyme@main
+        with:
+          filepath: main.go
