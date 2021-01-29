@@ -11,8 +11,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Runs the Super-Linter action
+      # Runs the verifier action
       - name: Run build verifier
         uses: dlorenc/verifyme/action@main
         with:
-          filepath: main.go
+          filepath: README.md
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact
+          path: README.md
+      - name: Upload signatures
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact
+          path: verified-output/*

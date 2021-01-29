@@ -15,11 +15,18 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"path/filepath"
 )
+
+const outputDir = "verified-output"
 
 func main() {
 	if len(os.Args) != 2 {
 		log.Fatal("Usage: verifyme <filepath>")
+	}
+
+	if err := os.MkdirAll(outputDir, 0755); err != nil {
+		log.Fatal(err)
 	}
 
 	fp := os.Args[1]
@@ -77,6 +84,9 @@ func main() {
 func logOutput(key, val string) {
 	fmt.Printf("::set-output name=%s::%s\n", key, val)
 	fmt.Printf("%s=%s\n", key, val)
+	if err := ioutil.WriteFile(filepath.Join(outputDir, key), []byte(val), 0644); err != nil {
+		log.Fatal(err)
+	}
 }
 
 type envelope struct {
