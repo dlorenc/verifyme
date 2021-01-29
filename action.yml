@@ -1,0 +1,18 @@
+# action.yml
+name: 'Verify Me'
+description: 'Make a build verifiable'
+inputs:
+  filepath:  
+    description: 'Path of file to sign'
+    required: true
+    default: 'output'
+outputs:
+  signature: # id of output
+    description: 'base64 encoded signature'
+  publickey: # id of output
+    description: 'publickey'
+runs:
+  using: 'docker'
+  image: us-central1-docker.pkg.dev/dlorenc-vmtest2/test/verifyme-985f218cb919c4025174ca30373de02f@sha256:cc786e6c9defaea5308219e388714cb0727c24173133d15b4fba6b831868c8c1
+  args:
+    - ${{ inputs.filepath }}
