@@ -13,6 +13,6 @@ jobs:
 
       # Runs the Super-Linter action
       - name: Run build verifier
-        uses: dlorenc/verifyme@main
+        uses: dlorenc/verifyme/action@main
         with:
           filepath: main.go

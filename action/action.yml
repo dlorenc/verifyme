@@ -19,6 +19,6 @@ outputs:
     description: 'publickey'
 runs:
   using: 'docker'
-  image: docker://us-central1-docker.pkg.dev/dlorenc-vmtest2/test/verifyme-985f218cb919c4025174ca30373de02f@sha256:7da5e029954006c3080d3726dcf854f3b6d190d718a3b373a4421a373fa0c5e8
+  image: docker://us-central1-docker.pkg.dev/dlorenc-vmtest2/test/action-c177d66b852b5ae874db32aee9157a51@sha256:87695ae9fca276108ede0cd0eff99b533c48c2c26b70c7f0cc011bff1377cd79
   args:
     - ${{ inputs.filepath }}
