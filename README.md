@@ -161,3 +161,27 @@ And to verify the environment:
 ```
 
 See the same note as above around verifying the contents in the Action logs as well.
+
+## Other Verifications
+
+The verifier action is built into a Docker container reproducibly with `Ko`.
+You should be able to clone this repository, run `ko publish ./action` and compare the SHAs.
+This action itself should always be used by SHA rather than a tag.
+
+Within a build, the binary also first outputs it's own hash.
+You can also check this by downloading the published container image directly and examining the layers.
+
+### Caveats
+
+This verificaton can only tell you that an artifact was produced from a specified GitHub Action execution.
+It **cannot** actually tell you what that execution did.
+
+This verification also relies on trusting that this binary actually ran.
+This implies that you trust the GitHub Actions build environment as well as any steps that ran
+before this Action.
+
+All steps that ran before this effectively run as root and can tamper with the environment, including
+tampering with this verifier binary itself.
+
+The worst case here would be modifying the verifier binary so that the private key is exfiltrated
+and can be used to sign other data, or to use a previously-known non-random private key.
