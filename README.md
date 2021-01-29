@@ -58,6 +58,16 @@ jobs:
           filepath: main.go
 ```
 
+You can also configure a workflow to upload all of the verification information as "artifacts":
+
+```yaml
+    - name: Upload signatures
+      uses: actions/upload-artifact@v2
+      with:
+        name: artifact
+        path: verified-output/*
+```
+
 ### Verification
 
 To verify an artifact built using this action, you must first have:
